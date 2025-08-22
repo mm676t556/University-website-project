@@ -129,45 +129,6 @@ h6 {
   }
 }
 
-/* =========================
-   top navbar
-========================= */
-
-.top-navbar {
-  position: fixed;
-  font-size: 14px;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #22612e;
-  z-index: 9999;
-  padding: 5px 0;
-}
-
-.top-navbar a:hover {
-  color: #000000;
-  text-decoration: underline;
-}
-.top-nav-left a,
-.top-nav-right a {
-  color: white;
-  margin-right: 15px;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-.no-smoking-icon {
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
-}
-.top-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 15px;
-}
 
 /* =========================
    Navbar base styles
@@ -178,25 +139,22 @@ h6 {
   white-space: normal;
   text-align: center;
   line-height: 1.2;
-}
-
-.navbar {
-  background-color: white;
-  transition: background-color 0.3s ease;
+  padding: 5px 15px; /* اتظبط هنا بدل .ul .li .a */
 }
 
 .navbar.scrolled {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.318);
   backdrop-filter: blur(5px);
 }
 
 .navmenu > ul > li > a {
-  color: #04620d !important; /* أسود */
+  color: #04620d !important;
 }
 
 .navmenu > ul > li > a:hover {
-  color: #7ba506da !important; /* أسود أفتح شوية عند الهوفر */
+  color: #7ba506da !important;
 }
+
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
@@ -228,8 +186,7 @@ h6 {
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
   }
 
-  .navmenu a,
-  .navmenu a:focus {
+  .navmenu a {
     color: var(--nav-dropdown-color);
     padding: 10px 20px;
     font-family: var(--nav-font);
@@ -242,8 +199,7 @@ h6 {
     transition: 0.3s;
   }
 
-  .navmenu a i,
-  .navmenu a:focus i {
+  .navmenu a i {
     font-size: 12px;
     line-height: 0;
     margin-left: 5px;
@@ -257,20 +213,17 @@ h6 {
     background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
   }
 
-  .navmenu a i:hover,
-  .navmenu a:focus i:hover {
+  .navmenu a i:hover {
     background-color: var(--accent-color);
     color: var(--contrast-color);
   }
 
   .navmenu a:hover,
-  .navmenu .active,
-  .navmenu .active:focus {
+  .navmenu .active {
     color: var(--nav-dropdown-hover-color);
   }
 
-  .navmenu .active i,
-  .navmenu .active:focus i {
+  .navmenu .active i {
     background-color: var(--accent-color);
     color: var(--contrast-color);
     transform: rotate(180deg);
@@ -324,15 +277,6 @@ h6 {
   }
 }
 
-/* Extra: mobile view up to 991px */
-@media (max-width: 991px) {
-  .navbar ul {
-    display: none;
-  }
-  .navbar.mobile-nav-active ul {
-    display: block;
-  }
-}
 /* =========================
    Search Box
 ========================= */
@@ -385,17 +329,16 @@ h6 {
   transform: translateX(-10%); /* العكس */
   transition: transform 0.3s ease, width 0.3s ease;
   width: 50px;
+  height: 40px;
 }
 
 .side-buttons a:hover {
   transform: translateX(0); /* ترجع مكانها الطبيعي */
 }
 
-.side-buttons a img {
-  width: 40px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 10%;
+.side-buttons a i {
+  font-size: 20px;
+  margin: 0 5px;
 }
 
 .side-buttons a span {
@@ -460,14 +403,27 @@ h6 {
 .scrolled .header {
   --background-color: rgba(0, 0, 0, 0.8);
 }
-
 /* =========================
-   Navigation Menu + Navbar
+   Navbar Desktop
 ========================= */
-/* Navmenu - Desktop */
 @media (min-width: 1200px) {
   .navmenu {
-    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;                /* ارتفاع مناسب */
+    display: flex;
+    align-items: center;
+    background: transparent;     /* شفاف افتراضي */
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    z-index: 9999;
+    padding: 0 30px;
+  }
+  /* لما ينزل scroll */
+  .navmenu.scrolled {
+    background: rgba(255, 255, 255, 0.552);
+    backdrop-filter: blur(6px);
   }
 
   .navmenu ul {
@@ -476,107 +432,155 @@ h6 {
     display: flex;
     list-style: none;
     align-items: center;
+    flex: 1; /* تخلي العناصر تتمدد */
   }
 
   .navmenu li {
     position: relative;
   }
 
-  .navmenu a,
-  .navmenu a:focus {
-    color: var(--nav-color);
-    padding: 18px 15px;
+  .navmenu a {
+    color: var(--nav-color, #04620d);
+    padding: 10px 15px;
     font-size: 16px;
-    font-family: var(--nav-font);
+    font-family: var(--nav-font, Arial, sans-serif);
     font-weight: 400;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    transition: 0.3s;
     white-space: nowrap;
-    transition: 0.3s;
   }
 
-  .navmenu a i,
-  .navmenu a:focus i {
-    font-size: 12px;
-    line-height: 0;
-    margin-left: 5px;
-    transition: 0.3s;
+  .navmenu a:hover,
+  .navmenu .active {
+    color: var(--nav-hover-color, #0b0d04);
   }
 
-  .navmenu li:last-child a {
-    padding-right: 0;
+  /* اللوجو */
+  .navmenu .logo img {
+    max-height: 60px;  /* حجم أوضح */
+    width: auto;
+    margin-right: 30px;
   }
 
-  .navmenu li:hover>a,
-  .navmenu .active,
-  .navmenu .active:focus {
-    color: var(--nav-hover-color);
+/* Dropdown */
+.navmenu .dropdown ul {
+  position: absolute;
+  top: 100%;             /* تبدأ تحت العنصر */
+  left: 0;
+  display: block;        /* عمودي */
+  flex-direction: column;
+  max-height: 300px;     /* أقصى ارتفاع */
+  overflow-y: auto;      /* Scroll لو القايمة طويلة */
+  padding: 10px 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0px 4px 30px rgba(0,0,0,0.1);
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 99;
+}
+
+/* إظهار عند hover */
+.navmenu .dropdown:hover > ul {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* العناصر جوا القايمة */
+.navmenu .dropdown ul li {
+  display: block;
+  min-width: 220px;
+}
+
+.navmenu .dropdown ul a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 15px;
+  color: #333;
+  white-space: normal;   /* يكسر السطر لو النص طويل */
+}
+
+.navmenu .dropdown ul a:hover {
+  background: #f9f9f9;
+  color: var(--nav-hover-color, #7ba506);
+}
+}
+
+/* عشان المحتوى يبدأ بعد الـ navbar */
+body {
+  padding-top: 70px;
+}
+/* Navmenu - Mobile */
+@media (max-width: 1199px) {
+  .navmenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background: #fff;  /* خلفية واضحة بدل الشفافية */
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
 
+  /* القايمة */
+  .navmenu ul {
+    position: relative; /* خليها relative مش absolute */
+    inset: unset;       /* نشيل القيود */
+    display: block;
+    margin-top: 60px;   /* مسافة تحت اللوجو */
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px 0;
+  }
+
+  .navmenu li {
+    margin: 5px 0; /* مسافة بين العناصر */
+  }
+
+  .navmenu a {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* dropdown */
   .navmenu .dropdown ul {
     margin: 0;
-    padding: 10px 0;
-    background: var(--nav-dropdown-background-color);
-    display: block;
-    position: absolute;
-    visibility: hidden;
-    left: 14px;
-    top: 130%;
-    opacity: 0;
-    transition: 0.3s;
-    border-radius: 4px;
-    z-index: 99;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    background: #f7f7f7;
+    border-radius: 6px;
+    border: 1px solid #ddd;
   }
 
-  .navmenu .dropdown ul li {
-    min-width: 200px;
-  }
-
-  .navmenu .dropdown ul a {
-    padding: 10px 20px;
+  .navmenu .dropdown ul li a {
+    padding: 10px 25px;
     font-size: 15px;
-    text-transform: none;
-    color: var(--nav-dropdown-color);
   }
-
-  .navmenu .dropdown ul a i {
-    font-size: 12px;
+}
+@media (max-width: 768px) {
+  .navbar ul {
+    display: none;
+    flex-direction: column;
   }
-
-  .navmenu .dropdown ul a:hover,
-  .navmenu .dropdown ul .active:hover,
-  .navmenu .dropdown ul li:hover>a {
-    color: var(--nav-dropdown-hover-color);
-  }
-
-  .navmenu .dropdown:hover>ul {
-    opacity: 1;
-    top: 100%;
-    visibility: visible;
-  }
-
-  .navmenu .dropdown .dropdown ul {
-    top: 0;
-    left: -90%;
-    visibility: hidden;
-  }
-
-  .navmenu .dropdown .dropdown:hover>ul {
-    opacity: 1;
-    top: 0;
-    left: -100%;
-    visibility: visible;
+  .navbar.active ul {
+    display: flex;
   }
 }
 
+
 /* =========================
-   4. الكاروسيل (Carousel)
+   Carousel Styling
 ========================= */
+
 .carousel-item img {
   transform: scale(1.2);
-  transition: transform 3s ease-in-out;
+  transition: transform 1s ease-in-out;
   height: 500px;
   width: 100%;
   object-fit: cover;
@@ -588,7 +592,6 @@ h6 {
 .icon-bar-wrapper {
   margin: 12px 0 30px;
 }
-
 
 .icon-box a {
   text-decoration: none;
@@ -605,6 +608,16 @@ h6 {
 .icon-box p {
   margin: 5px 0 10px;
   font-size: 30px;
+}
+
+.about .col-lg-12 {
+  max-width: 900px;     /* عشان مايبقاش عريض قوي */
+  margin: 0 auto;       /* يخليه في النص */
+  padding: 0 25px;      /* فراغ من اليمين والشمال */
+  text-align: center;   /* يخلي النص في النص */
+  font-size: 18px;      /* حجم الخط */
+  line-height: 1.6;     /* ارتفاع السطر */
+  color: #333;          /* لون النص */
 }
 
 /* =========================
@@ -1385,7 +1398,6 @@ section,
   bottom: 0; /* يطلع لفوق */
 }
 
-
 /* أيقونة الكارت */
 .card-icon {
   background: #fff;
@@ -1835,7 +1847,6 @@ section,
   border-radius: 20px;
   transition: transform 0.8s ease;
   width: 100%;   /* بدال 100% */
-  /* max-width: none;  علشان ما يتقيدش */
 }
 
 .alumni .alumni-hero .hero-image-wrapper .hero-image img:hover {
@@ -2642,3 +2653,205 @@ section,
   font-size: 1rem;
   color: #333;
 }
+
+.navmenu ul {
+  display: flex;
+  align-items: center;
+}
+
+.navmenu ul li:first-child {
+  flex: 0 0 300px; /* بتدي مساحة ثابتة للوجو */
+}
+
+.navmenu .logo-img {
+  max-height: 100px; /* حجم اللوجو */
+  width: auto;
+}
+/* =========================
+   11.Team
+========================= */
+body {
+  font-family: 'Raleway', sans-serif;
+}
+.team-img {
+  width: 100%;
+  max-width: 500px;
+  height: 450px;
+  margin: auto;
+  object-fit: cover;
+  border-radius: 25px 25px 0 0;
+  display: block;
+}
+.card {
+  border: none;
+  border-radius: 25px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  max-width: 500px;
+  margin: auto;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+.card2 {
+  margin-top: -300px !important;
+  border: none;
+  border-radius: 25px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  max-width: 500px;
+  margin: auto;
+}
+.card2:hover {
+  transform: scale(1.05);
+}
+.team-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.team-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 3px;
+  background: #0077b0;
+  transition: width 0.4s ease;
+}
+.team-title:hover {
+  color: #0077b0;
+  transform: scale(1.1);
+}
+.team-title:hover::after {
+  width: 100%;
+}
+.card-title {
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.card-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background:  #0077b0;
+  transition: width 0.3s ease;
+}
+.card-title:hover {
+  color: #0077b0;
+}
+.card-title:hover::after {
+  width: 100%;
+}
+.social-links a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.social-links a:hover {
+  color: #0077b0;
+}
+.social-links a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.social-links span {
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+.social-links span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background:#0077b0;
+  transition: width 0.3s ease;
+}
+.social-links span:hover {
+  color: #0077b0;
+}
+.social-links span:hover::after {
+  width: 100%;
+}
+.bubbles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; /* ورا المحتوى */
+  top: 0;
+  left: 0;
+  background: #f0faff;
+}
+
+.bubbles span {
+  position: absolute;
+  bottom: -100px;
+  background: rgba(0, 150, 255, 0.3);
+  border-radius: 50%;
+  animation: rise 10s infinite ease-in;
+}
+
+.bubbles span:nth-child(1) {
+  width: 40px;
+  height: 40px;
+  left: 10%;
+  animation-duration: 8s;
+}
+
+.bubbles span:nth-child(2) {
+  width: 25px;
+  height: 25px;
+  left: 30%;
+  animation-duration: 12s;
+}
+
+.bubbles span:nth-child(3) {
+  width: 50px;
+  height: 50px;
+  left: 50%;
+  animation-duration: 15s;
+}
+
+.bubbles span:nth-child(4) {
+  width: 20px;
+  height: 20px;
+  left: 70%;
+  animation-duration: 10s;
+}
+
+.bubbles span:nth-child(5) {
+  width: 35px;
+  height: 35px;
+  left: 90%;
+  animation-duration: 14s;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-1200px) scale(1.5);
+    opacity: 0;
+  }
+}
+
